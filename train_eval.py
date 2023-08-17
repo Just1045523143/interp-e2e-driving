@@ -53,11 +53,11 @@ from interp_e2e_driving.networks import sequential_latent_network
 from interp_e2e_driving.utils import gif_utils
 
 
-flags.DEFINE_string('root_dir', os.getenv('TEST_UNDECLARED_OUTPUTS_DIR'),
+flags.DEFINE_string('root_dir', './out', # os.getenv('TEST_UNDECLARED_OUTPUTS_DIR'),
                     'Root directory for writing logs/summaries/checkpoints.')
-flags.DEFINE_string('experiment_name', None,
+flags.DEFINE_string('experiment_name', 'test',
                     'Experiment name used for naming the output directory.')
-flags.DEFINE_multi_string('gin_file', None, 'Path to the trainer config files.')
+flags.DEFINE_multi_string('gin_file', './params.gin', 'Path to the trainer config files.')
 flags.DEFINE_multi_string('gin_param', None, 'Gin binding to pass through.')
 
 FLAGS = flags.FLAGS
@@ -69,7 +69,7 @@ def load_carla_env(
   discount=1.0,
   number_of_vehicles=100,
   number_of_walkers=0,
-  display_size=256,
+  display_size=512,
   max_past_step=1,
   dt=0.1,
   discrete=False,
