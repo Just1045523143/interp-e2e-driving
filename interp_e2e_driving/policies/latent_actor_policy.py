@@ -20,7 +20,9 @@ from tf_agents.trajectories import policy_step
 
 @gin.configurable
 class LatentActorPolicy(tf_policy.TFPolicy):
-    """Class to build Actor Policies."""
+    """Class to build Actor Policies.
+    潜在执行器策略
+    """
 
     def __init__(self,
                  time_step_spec,

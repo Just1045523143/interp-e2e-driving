@@ -119,7 +119,9 @@ class DdpgAgent(tf_agent.TFAgent):
         self._target_critic_network = common.maybe_copy_target_network_with_checks(
             self._critic_network, target_critic_network, 'TargetCriticNetwork')
 
+        # 执行器优化器
         self._actor_optimizer = actor_optimizer
+        # 评价优化器
         self._critic_optimizer = critic_optimizer
 
         self._ou_stddev = ou_stddev
@@ -267,7 +269,7 @@ class DdpgAgent(tf_agent.TFAgent):
                     actions,
                     next_time_steps,
                     weights=None):
-        """Computes the critic loss for DDPG training.
+        """Computes the critic loss for DDPG training.评价损失函数
 
         Args:
           time_steps: A batch of timesteps.
@@ -318,7 +320,7 @@ class DdpgAgent(tf_agent.TFAgent):
             return critic_loss
 
     def actor_loss(self, time_steps, weights=None):
-        """Computes the actor_loss for DDPG training.
+        """Computes the actor_loss for DDPG training. 执行器损失函数
 
         Args:
           time_steps: A batch of timesteps.

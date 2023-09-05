@@ -64,6 +64,7 @@ class Decoder64(tf.Module):
     def __init__(self, base_depth, channels=3, scale=1.0, name=None):
         super(Decoder64, self).__init__(name=name)
         self.scale = scale
+        # 转置卷积层
         conv_transpose = functools.partial(
             tf.keras.layers.Conv2DTranspose, padding="SAME", activation=tf.nn.leaky_relu)
         self.conv_transpose1 = conv_transpose(8 * base_depth, 4, padding="VALID")
@@ -267,6 +268,7 @@ class Encoder256(tf.Module):
 @gin.configurable
 class SequentialLatentModelHierarchical(tf.Module):
     """The hierarchical sequential latent model. See https://arxiv.org/abs/1907.00953.
+    层次序列潜在模型
     """
 
     def __init__(self,
@@ -662,6 +664,9 @@ class SequentialLatentModelHierarchical(tf.Module):
 
 @gin.configurable
 class SequentialLatentModelNonHierarchical(tf.Module):
+    """
+    序列潜在模型（非层次）
+    """
 
     def __init__(self,
                  input_names,

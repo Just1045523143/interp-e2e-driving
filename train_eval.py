@@ -326,6 +326,7 @@ def train_eval(
         # Params for collect
         initial_collect_steps=1000,
         collect_steps_per_iteration=1,
+        # 经验回访缓存大小，
         replay_buffer_capacity=int(1e5),
         # Params for target update
         target_update_tau=0.005,
